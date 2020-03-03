@@ -46,6 +46,7 @@ php artisan migrate
 
 ## Usage
 
+
 ### 👉 STEP 1: Add the HasSef trait to a model
 First, you need to add the TaffoVelikoff\LaravelSef\Traits\HasSef trait to your model.
 
@@ -60,6 +61,7 @@ class Product extends Model
     use HasSef;
 }
 ```
+
 
 ### 👉 STEP 2: Create/update the SEF
 
@@ -108,8 +110,10 @@ Now you can use the sefUrl() method to link the resource in your templates:
 <a href="{{ $product->sefUrl() }}">{{ $product->name }}</a>
 ```
 
+
 ### 👉 STEP 3: Call the right controller and method
 You have a few options on how to call the controller and method used to view the model.
+
 
 #### ▶️ Method 1: URL mappings in config file.
 Publish the configuration file:
@@ -143,6 +147,7 @@ return [
 
 ];
 ```
+
 
 #### ▶️ Method 2: Define a $sef_method property in the model
 Add this to your routes file (typically web.php) at the ***VERY BOTTOM***.
@@ -193,6 +198,7 @@ class ProductController extends Controller
 }
 
 ```
+
 
 #### ▶️ Method 3: Your own controller
 Add this to your routes file (typically web.php) at the ***VERY BOTTOM***.
