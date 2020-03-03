@@ -2,7 +2,6 @@
     "name": "taffovelikoff/laravel-sef",
     "description": "Search engine friendly URLs for your laravel app.",
     "homepage": "https://github.com/TaffoVelikoff/laravel-sef",
-    "version": "1.0.0",
     "type": "library",
     "license": "MIT",
     "authors": [

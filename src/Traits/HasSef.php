@@ -5,8 +5,7 @@ namespace TaffoVelikoff\LaravelSef\Traits;
 use Cache;
 use TaffoVelikoff\LaravelSef\Sef;
 
-trait HasSef
-{
+trait HasSef {
 
 	/**
      * Get the custom url (SEF)
@@ -32,7 +31,7 @@ trait HasSef
 	public function updateSef($keyword) {
 		// Clear from cache
 		Cache::forget('sef_'.$this->sefKeyword());
-		
+
 		// Update
 		$this->sef->keyword = $keyword;
 		$this->sef->save();
