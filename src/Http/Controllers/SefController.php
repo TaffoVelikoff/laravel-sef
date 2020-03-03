@@ -24,7 +24,7 @@ class SefController extends Controller
 		$model = $sef->model_type;
 
 		// Get sef mapping
-		$sefModels = config('sef');
+		$sefModels = config('sef.routes');
 
 		// Redirect
 		if(array_key_exists($model, $sefModels)) {
