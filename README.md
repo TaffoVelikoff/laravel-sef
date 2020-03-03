@@ -2,13 +2,13 @@
 🔗 Search engine friendly urls for your Laravel website.
 
 ## Contents
-[🤔  Why use it?](https://github.com/TaffoVelikoff/laravel-sef#why-use-it)
+[🤔  Why use it?](#why-use-it)
 
-[💻 Requirements](https://github.com/TaffoVelikoff/laravel-sef#usage)
+[💻 Requirements](#usage)
 
-[⚙️ Installation](https://github.com/TaffoVelikoff/laravel-sef#installation)
+[⚙️ Installation](#installation)
 
-[📚 Usage](https://github.com/TaffoVelikoff/laravel-sef#usage)
+[📚 Usage](#usage)
 
 ## Why use it?
 There are many ways to create search engine friendly urls. For example you can use "slugs":
@@ -35,7 +35,7 @@ This package requires ***Laravel 5.8*** or above.
 You can install the package via composer:
 
 ```bash
-composer require taffovelikoff/sef
+composer require taffovelikoff/laravel-sef
 ```
 
 Don't forget to run the migrations. There is a migration file for a "sefs" table, where all the custom urls will be stored.
@@ -47,12 +47,12 @@ php artisan migrate
 ## Usage
 
 ### 👉 STEP 1: Add the HasSef trait to a model
-First, you need to add the TaffoVelikoff\Sef\Traits\HasSef trait to your model.
+First, you need to add the TaffoVelikoff\LaravelSef\Traits\HasSef trait to your model.
 
 ```php
 namespace App;
 
-use TaffoVelikoff\Sef\Traits\HasSef;
+use TaffoVelikoff\LaravelSef\Traits\HasSef;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -121,7 +121,7 @@ php artisan vendor:publish --tag:sef_config
 Add this to your routes file (typically web.php) at the ***VERY BOTTOM***.
 
 ```php
-Route::get('{keyword}', '\TaffoVelikoff\Sef\Http\Controllers\SefController@viaConfig');
+Route::get('{keyword}', '\TaffoVelikoff\LaravelSef\Http\Controllers\SefController@viaConfig');
 ```
 
 Say you are trying to reach https://mylaravel.com/something. If /something is not defined in your app routes SefController@viaConfig will be called
@@ -130,7 +130,6 @@ This method will search in the "sefs" table for a record with keyword = 'somethi
 If the record exists the method will check if the owner model type (class) exists in the routes array in config/sef.php.
 
 ```php
-
 // config/sef.php
 
 return [
@@ -149,7 +148,7 @@ return [
 Add this to your routes file (typically web.php) at the ***VERY BOTTOM***.
 
 ```php
-Route::get('{keyword}', '\TaffoVelikoff\Sef\Http\Controllers\SefController@viaMethod');
+Route::get('{keyword}', '\TaffoVelikoff\LaravelSef\Http\Controllers\SefController@viaMethod');
 ```
 
 Say you are trying to reach https://mylaravel.com/something. If /something is not defined in your app routes SefController@viaMethod will be called
@@ -160,7 +159,7 @@ If the record exists the method will next check what is the owner model type. Sa
 ```php
 namespace App;
 
-use TaffoVelikoff\Sef\Traits\HasSef;
+use TaffoVelikoff\LaravelSef\Traits\HasSef;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -205,11 +204,9 @@ Route::get('{keyword}', 'App\MySefController@redirect');
 Create your own controller:
 
 ```php
-<?php
-
 namespace App\Http\Controllers;
 
-use TaffoVelikoff\Sef\Sef;
+use TaffoVelikoff\LaravelSef\Sef;
 use App\Http\Controllers\Controller;
 
 class SefController extends Controller
