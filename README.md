@@ -1,15 +1,14 @@
 # TaffoVelikoff/LaravelSef
 🔗 Search engine friendly urls for your Laravel website.
 
-
 ## Contents
-[🤔  Why use it?](https://github.com/TaffoVelikoff/laravel-sef)
+[🤔  Why use it?](https://github.com/TaffoVelikoff/laravel-sef#why-use-it)
 
-[💻 Requirements](https://github.com/TaffoVelikoff/laravel-sef)
+[💻 Requirements](https://github.com/TaffoVelikoff/laravel-sef#usage)
 
-[⚙️ Installation](https://github.com/TaffoVelikoff/laravel-sef)
+[⚙️ Installation](https://github.com/TaffoVelikoff/laravel-sef#installation)
 
-[📚 Usage](https://github.com/TaffoVelikoff/laravel-sef)
+[📚 Usage](https://github.com/TaffoVelikoff/laravel-sef#usage)
 
 ## Why use it?
 There are many ways to create search engine friendly urls. For example you can use "slugs":
