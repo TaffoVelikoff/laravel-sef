@@ -28,7 +28,7 @@ This package will help you achieve that!
 
 ## Requirements
 
-This package requires ***Laravel 5.8*** or above.
+>This package requires ***Laravel 5.8*** or above.
 
 ## Installation
 
@@ -46,7 +46,6 @@ php artisan migrate
 
 ## Usage
 
-
 ### 👉 STEP 1: Add the HasSef trait to a model
 First, you need to add the TaffoVelikoff\LaravelSef\Traits\HasSef trait to your model.
 
@@ -61,7 +60,6 @@ class Product extends Model
     use HasSef;
 }
 ```
-
 
 ### 👉 STEP 2: Create/update the SEF
 
@@ -110,10 +108,8 @@ Now you can use the sefUrl() method to link the resource in your templates:
 <a href="{{ $product->sefUrl() }}">{{ $product->name }}</a>
 ```
 
-
 ### 👉 STEP 3: Call the right controller and method
 You have a few options on how to call the controller and method used to view the model.
-
 
 #### ▶️ Method 1: URL mappings in config file.
 Publish the configuration file:
@@ -128,10 +124,13 @@ Add this to your routes file (typically web.php) at the ***VERY BOTTOM***.
 Route::get('{keyword}', '\TaffoVelikoff\LaravelSef\Http\Controllers\SefController@viaConfig');
 ```
 
-Say you are trying to reach https://mylaravel.com/something. If /something is not defined in your app routes SefController@viaConfig will be called
-.
-This method will search in the "sefs" table for a record with keyword = 'something'. If no such record exists a 404 error will be thrown.
-If the record exists the method will check if the owner model type (class) exists in the routes array in config/sef.php.
+Say you are trying to reach **https://mylaravel.com/something**. 
+
+If **/something** is not defined in your app routes SefController@viaConfig will be called. This method will search in the ***"sefs"*** table for a record where *keyword = 'something'*. 
+
+If no such record exists a 404 error will be thrown.
+
+If the record is found the method will check if the owner model type (class) exists in the routes array in config/sef.php:
 
 ```php
 // config/sef.php
@@ -148,7 +147,6 @@ return [
 ];
 ```
 
-
 #### ▶️ Method 2: Define a $sef_method property in the model
 Add this to your routes file (typically web.php) at the ***VERY BOTTOM***.
 
@@ -156,10 +154,14 @@ Add this to your routes file (typically web.php) at the ***VERY BOTTOM***.
 Route::get('{keyword}', '\TaffoVelikoff\LaravelSef\Http\Controllers\SefController@viaMethod');
 ```
 
-Say you are trying to reach https://mylaravel.com/something. If /something is not defined in your app routes SefController@viaMethod will be called
-.
-This method will search in the "sefs" table for a record with keyword = 'something'. If no such record exists a 404 error will be thrown.
-If the record exists the method will next check what is the owner model type. Say the owner model is of type "App\Product". Next the method will check for a public static property $sef_method in the App\Product model:
+Say you are trying to reach **https://mylaravel.com/something**.
+
+If **/something** is not defined in your app routes **SefController@viaMethod** will be called.
+This method will search in the ***"sefs"*** table for a record where *keyword = 'something'*. 
+
+If no such record exists a 404 error will be thrown.
+
+If the record is found the method will next check what is the owner model type. Say the owner model is of type **"App\Product"**. Next the method will check for a public static property ***$sef_method*** in the **App\Product** model:
 
 ```php
 namespace App;
@@ -198,7 +200,6 @@ class ProductController extends Controller
 }
 
 ```
-
 
 #### ▶️ Method 3: Your own controller
 Add this to your routes file (typically web.php) at the ***VERY BOTTOM***.
