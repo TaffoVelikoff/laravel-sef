@@ -2,6 +2,7 @@
 
 namespace TaffoVelikoff\LaravelSef;
 
+use Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class Sef extends Model
@@ -17,8 +18,18 @@ class Sef extends Model
     /**
      * Get the owning model.
      */
-    public function model()
-    {
+    public function model() {
         return $this->morphTo('model');
+    }
+
+    /*
+     * Delete & clear from cache
+     */
+    protected static function boot() {
+        parent::boot();
+
+        static::deleting(function($sef) { 
+            Cache::forget('sef_'.$sef->keyword);
+        });
     }
 }

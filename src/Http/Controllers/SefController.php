@@ -2,6 +2,7 @@
 
 namespace TaffoVelikoff\LaravelSef\Http\Controllers;
 
+use Cache;
 use Illuminate\Http\Request;
 use TaffoVelikoff\LaravelSef\Sef;
 use App\Http\Controllers\Controller;
@@ -14,7 +15,9 @@ class SefController extends Controller
 	public function viaConfig(Request $request, $keyword = null) {
 
 		// Find SEF with keyword
-		$sef = Sef::where('keyword', $request->route()->parameters['keyword'])->first();
+		$sef = Cache::remember('sef_'.$keyword, now()->addDays(30), function () use ($request) {
+			return Sef::where('keyword', $request->route()->parameters['keyword'])->first();
+		});
 
 		// Check if url exists
 		if(!$sef) abort(404);
@@ -39,7 +42,9 @@ class SefController extends Controller
 	public function viaProperty(Request $request, $keyword = null) {
 
 		// Find SEF with keyword
-		$sef = Sef::where('keyword', $request->route()->parameters['keyword'])->first();
+		$sef = Cache::remember('sef_'.$keyword, now()->addDays(30), function () use ($request) {
+			return Sef::where('keyword', $request->route()->parameters['keyword'])->first();
+		});
 
 		// Check if url exists
 		if(!$sef) abort(404);
